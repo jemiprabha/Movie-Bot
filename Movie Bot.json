@@ -1,0 +1,787 @@
+{
+  "intents": [
+    {
+      "intent": "Enquiry",
+      "examples": [
+        {
+          "text": "Can you show the availability of tickets and their respective prices?"
+        },
+        {
+          "text": "Can you show the Movie Name"
+        },
+        {
+          "text": "Do you want to book the movie tickets"
+        },
+        {
+          "text": "I want to see the show timings"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "email",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "enquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "availability of tickets",
+          "synonyms": [
+            "is ticket"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Movie name",
+          "synonyms": [
+            "Movie title"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "movie tickets",
+          "synonyms": [
+            "card"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "show timings",
+          "synonyms": [
+            "timings"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ticket",
+          "synonyms": [
+            "coupon",
+            "discount",
+            "voucher"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "GA",
+            "Gd Atn"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "Gd eng",
+            "GE"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "Gd mrg",
+            "GM"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "moviename",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "kala",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "pettai",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "robo",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "payment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "card",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "cash",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "UPI",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "paymenttype",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "kala",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "pettai",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "robo",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1602598014872",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "we accept cash/card"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_6_1602599609174",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1602599609190",
+      "previous_sibling": "handler_4_1602599609190"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_3_1602598014872",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1602598191980",
+      "previous_sibling": "node_5_1602941412445"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1602598121841",
+      "context": {
+        "moviename_kala": "@moviename:kala"
+      },
+      "conditions": "@moviename:kala",
+      "event_name": "input",
+      "dialog_node": "handler_2_1602598121913"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "can u book the ticket"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_8_1602598121841",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1602598121913",
+      "previous_sibling": "handler_2_1602598121913"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1602599609174",
+      "context": {
+        "payment": "@payment"
+      },
+      "conditions": "@payment",
+      "event_name": "input",
+      "dialog_node": "handler_4_1602599609190"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "how many tickets do u want"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_4_1602599395671",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1602599395684",
+      "previous_sibling": "handler_6_1602599395684"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1602599395671",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_6_1602599395684"
+    },
+    {
+      "type": "standard",
+      "title": "Enquiry",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Enquiry && @enquiry",
+      "dialog_node": "node_1_1602572550139",
+      "previous_sibling": "node_8_1602568560062"
+    },
+    {
+      "type": "frame",
+      "title": "Booktickets",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you your tickets of $number of $moviename_kala is booked. Please pay using $payment"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@moviename:kala",
+      "dialog_node": "node_3_1602598014872",
+      "previous_sibling": "node_1_1602572550139"
+    },
+    {
+      "type": "standard",
+      "title": "moviename",
+      "parent": "node_1_1602572550139",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@moviename:robo",
+      "dialog_node": "node_5_1602595945750",
+      "previous_sibling": "node_6_1602593278033"
+    },
+    {
+      "type": "standard",
+      "title": "Deleting context",
+      "output": {
+        "deleted": "<?context.remove('moviename_kala')?><?context.remove('number')?><?context.remove('payment')?>",
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1602598014872",
+      "conditions": "true",
+      "dialog_node": "node_5_1602941412445"
+    },
+    {
+      "type": "standard",
+      "title": "email",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you for  giving your mail id $email is used for the future reference"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {
+        "email": "@email.literal"
+      },
+      "conditions": "",
+      "dialog_node": "node_5_1602943953484"
+    },
+    {
+      "type": "standard",
+      "title": "moviename",
+      "parent": "node_1_1602572550139",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@moviename:kala",
+      "dialog_node": "node_6_1602593278033"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings || @Greetings",
+      "dialog_node": "node_8_1602568560062",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "moviename",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Price:Rs.125"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "availability:20"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "showtiming 3-6"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1602572550139",
+      "conditions": "@moviename:pettai",
+      "dialog_node": "node_9_1602596644616",
+      "previous_sibling": "node_5_1602595945750"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1602568560062",
+      "conditions": "anything_else",
+      "dialog_node": "response_10_1602569760357",
+      "previous_sibling": "response_3_1602569698564"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "good evening"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1602568560062",
+      "conditions": "@Greetings:(Good Evening)",
+      "dialog_node": "response_3_1602569698564",
+      "previous_sibling": "response_8_1602569672083"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ticketprice120"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "avialable:10"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Showtiming:11-2"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1602593278033",
+      "conditions": "@moviename:kala",
+      "dialog_node": "response_3_1602593555876"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "status",
+            "options": [
+              {
+                "label": "Total number of tickets",
+                "value": {
+                  "input": {
+                    "text": "Total number of tickets"
+                  }
+                }
+              },
+              {
+                "label": "Ticket price",
+                "value": {
+                  "input": {
+                    "text": "Ticket price"
+                  }
+                }
+              }
+            ],
+            "description": "available",
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1602572550139",
+      "conditions": "@enquiry:(availability of tickets)",
+      "dialog_node": "response_5_1602590678938",
+      "previous_sibling": "response_9_1602590606757"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "list of movies available",
+            "options": [
+              {
+                "label": "pettai",
+                "value": {
+                  "input": {
+                    "text": "pettai"
+                  }
+                }
+              },
+              {
+                "label": "robo",
+                "value": {
+                  "input": {
+                    "text": "robo"
+                  }
+                }
+              },
+              {
+                "label": "kala",
+                "value": {
+                  "input": {
+                    "text": "kala"
+                  }
+                }
+              }
+            ],
+            "description": "click the movie name ",
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1602572550139",
+      "conditions": "@enquiry:(Movie name)",
+      "dialog_node": "response_6_1602590517126",
+      "previous_sibling": "node_9_1602596644616"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "good morning"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1602568560062",
+      "conditions": "@Greetings:(Good Morning)",
+      "dialog_node": "response_8_1602569213971"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "good afternoon"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1602568560062",
+      "conditions": "@Greetings:(Good Afternoon)",
+      "dialog_node": "response_8_1602569672083",
+      "previous_sibling": "response_8_1602569213971"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "showtime",
+            "options": [
+              {
+                "label": "morning show",
+                "value": {
+                  "input": {
+                    "text": "morning show"
+                  }
+                }
+              },
+              {
+                "label": "evening show",
+                "value": {
+                  "input": {
+                    "text": "evening show"
+                  }
+                }
+              }
+            ],
+            "description": "am,pm",
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1602572550139",
+      "conditions": "@enquiry:(show timings)",
+      "dialog_node": "response_9_1602590606757",
+      "previous_sibling": "response_6_1602590517126"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "price rs.100"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "availability:15"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "showtimings 6-9"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1602595945750",
+      "conditions": "@moviename:robo",
+      "dialog_node": "response_9_1602596100952"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1602598014872",
+      "variable": "$number",
+      "dialog_node": "slot_4_1602599395671",
+      "previous_sibling": "slot_8_1602598121841"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1602598014872",
+      "variable": "$payment",
+      "dialog_node": "slot_6_1602599609174",
+      "previous_sibling": "slot_4_1602599395671"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1602598014872",
+      "variable": "$moviename_kala",
+      "dialog_node": "slot_8_1602598121841",
+      "previous_sibling": "handler_1_1602598191980"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. I am a Movie bot capable of show Movie Title, show timings, and booking tickets. How May I Help You"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
